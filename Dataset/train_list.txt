@@ -1,5 +1,7 @@
 Find and download list_train has label of Dataset mjsynth
 
+train list label: https://download.openmmlab.com/mmocr/data/mixture/Syn90k/label.txt
+
 Train list with label for examples:
 001.jpg RONALDO
 002.png LEAVES
