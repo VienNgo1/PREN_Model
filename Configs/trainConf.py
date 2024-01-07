@@ -3,8 +3,8 @@ from easydict import EasyDict as edict
 configs = edict()
 
 # ---- training
-configs['image_dir'] = "D:/pren-main/Dataset/IIIT5K/train"
-configs['train_list'] = "D:/pren-main/Dataset/IIIT5K/train_label.txt"
+configs['image_dir'] = "D:/pren-main/Dataset/mjsynth/train"
+configs['train_list'] = "D:/pren-main/Dataset/mjsynth/train_list.txt"
 configs['savedir'] = './models'
 configs['imgH'] = 64
 configs['imgW'] = 256
