@@ -1,1 +1,3 @@
 Download one of dataset to test: IIIT5k-Words (IIIT5k), ICDAR 2003 (IC03), ICDAR 2015 (IC15), CUTE80 (CUTE)
+
+IIIT5k: https://cvit.iiit.ac.in/projects/SceneTextUnderstanding/IIIT5K-Word_V3.0.tar.gz
