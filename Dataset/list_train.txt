@@ -1,0 +1,5 @@
+List train for examples
+
+001.jpg RONALDO
+002.png LEAVES
+003.jpg SALMON
