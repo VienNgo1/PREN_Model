@@ -1,1 +1,3 @@
 Find and download test_list of Dataset test corresponding train_list
+
+test_list: https://download.openmmlab.com/mmocr/data/mixture/IIIT5K/test_label.txt
