@@ -25,8 +25,7 @@ configs['cuda'] = True
 configs['image_dir'] = "D:/pren-main/Dataset/IIIT5K/test"
 configs['val_list'] = "D:/pren-main/Dataset/IIIT5K/test_label.txt"
 
-# configs['model_path'] = './models/pren.pth'
-configs['model_path'] ='D:\pren-main\models\\20240107-11-26-01\m_epoch8.pth'
+configs['model_path'] = './models/pren.pth'
 
 configs['imgH'] = 64
 configs['imgW'] = 256
