@@ -1,0 +1,1 @@
+Download one of dataset to test: IIIT5k-Words (IIIT5k), ICDAR 2003 (IC03), ICDAR 2015 (IC15), CUTE80 (CUTE)
