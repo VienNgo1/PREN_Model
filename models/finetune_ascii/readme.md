@@ -3,3 +3,4 @@
 - epoch: 2
 - batch size
 - training data size: 737k images
+- link download: https://drive.google.com/drive/folders/1LMVMN7QM5D0GfAA7CHi3RnmtaEgrZT-4?usp=sharing
