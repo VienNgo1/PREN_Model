@@ -1,0 +1,5 @@
+- pre-train model: pren.pth
+- learning rate: 0.05
+- epoch: 2
+- batch size
+- training data size: 737k images
