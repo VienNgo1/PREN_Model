@@ -2,7 +2,7 @@ from Configs.trainConf import configs
 from data.dataset import TrainLoader
 from Nets.model import Model
 from Utils.utils import *
-
+import os
 import random, pprint
 import numpy as np
 from progressbar import *
@@ -11,6 +11,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+os.environ['TORCH_USE_CUDA_DSA'] = '1'
 
 class Trainer(object):
 
@@ -34,6 +35,32 @@ class Trainer(object):
 
         if not self.configs.continue_train:
             self.model = model.to(self.device)
+            self.optimizer = ScheduledOptim(optim.Adadelta(filter(lambda x: x.requires_grad, self.model.parameters()),
+                                                           lr=self.configs.lr, weight_decay=self.configs.weight_decay),
+                                            init_lr = self.configs.lr, milestones=self.configs.lr_milestones, gammas=self.configs.lr_gammas)
+
+        elif self.configs.modify_model:
+            #Load pre train model
+            ckpt = torch.load(self.configs.continue_path)
+            old_class = ckpt['model_config']['n_class']
+            pretrained_dict = ckpt['state_dict']
+
+            #Update new model state_dict
+            self.model = model.to(self.device)
+            model_dict = self.model.state_dict()
+            #Resize line weight & bias
+            if old_class != self.configs.n_class:
+                temp_weight = torch.empty_like(model_dict['linear.weight']).copy_(model_dict['linear.weight'])
+                temp_weight[:old_class, :] = pretrained_dict['linear.weight']
+                pretrained_dict['linear.weight'] = temp_weight
+
+                temp_bias = torch.empty_like(model_dict['linear.bias']).copy_(model_dict['linear.bias'])
+                temp_bias[:old_class] = pretrained_dict['linear.bias']
+                pretrained_dict['linear.bias'] = temp_bias
+            model_dict.update(pretrained_dict)
+            self.model.load_state_dict(pretrained_dict)
+
+            #Init new model optimizers
             self.optimizer = ScheduledOptim(optim.Adadelta(filter(lambda x: x.requires_grad, self.model.parameters()),
                                                            lr=self.configs.lr, weight_decay=self.configs.weight_decay),
                                             init_lr = self.configs.lr, milestones=self.configs.lr_milestones, gammas=self.configs.lr_gammas)
